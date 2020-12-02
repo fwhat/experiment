@@ -125,6 +125,9 @@ func (s *Server) proxy(srcConn net.Conn, data []byte, distName string) error {
 	}
 
 	distConn, err := net.DialTimeout(url.Scheme, url.Host, time.Second*3)
+	if err != nil {
+		return err
+	}
 
 	go func() {
 		_, err = io.Copy(distConn, srcConn)
