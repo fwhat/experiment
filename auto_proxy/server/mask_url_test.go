@@ -44,6 +44,20 @@ func TestEncodeUrl(t *testing.T) {
 	}
 }
 
+func TestEncodeUrlDomain(t *testing.T) {
+	parse, err := url.Parse("tcp://www.baidu.com:80")
+	if err != nil {
+		t.Error(err)
+	}
+
+	encodeUrl, err := EncodeUrl(parse)
+	if err != nil {
+		t.Error(err)
+	}
+
+	panic(encodeUrl)
+}
+
 func TestByteTo16(t *testing.T) {
 	if ByteTo16(byte(7)) != "07" {
 		t.Error("len error")
